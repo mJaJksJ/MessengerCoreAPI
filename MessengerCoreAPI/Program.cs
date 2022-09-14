@@ -2,6 +2,7 @@ using System.Reflection;
 using MessengerCoreAPI;
 using MessengerCoreAPI.Models.RGDialogsClients;
 using MessengerCoreAPI.Models.RGDialogsClients.RGDialogsClientsFactory;
+using MessengerCoreAPI.Services.RGDialogsClients;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
@@ -76,6 +77,8 @@ builder.Services.AddSwaggerGen(c =>
 IRGDialogsClientsFactory dialogsClientsFactory = new DefaultRGDialogsClientsFactory();
 var dialogs = new RGDialogsClientsCollection { RGDialogsClients = dialogsClientsFactory.CreateRGDialogsClients() };
 builder.Services.AddSingleton(dialogs);
+
+builder.Services.AddScoped<IRGDialogsClientsService, RGDialogsClientsService>();
 
 #endregion services
 

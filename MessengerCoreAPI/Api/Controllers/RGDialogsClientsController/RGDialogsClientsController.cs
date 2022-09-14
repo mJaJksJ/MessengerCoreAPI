@@ -1,4 +1,4 @@
-using MessengerCoreAPI.Models.RGDialogsClients;
+using MessengerCoreAPI.Services.RGDialogsClients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MessengerCoreAPI.Api.Controllers.RGDialogsClientsController
@@ -8,14 +8,14 @@ namespace MessengerCoreAPI.Api.Controllers.RGDialogsClientsController
     /// </summary>
     public class RGDialogsClientsController : Controller
     {
-        private readonly RGDialogsClientsCollection _dialogsClientsCollection;
+        private readonly IRGDialogsClientsService _dialogsClientsService;
 
         /// <summary>
         /// .ctor
         /// </summary>
-        public RGDialogsClientsController(RGDialogsClientsCollection dialogsClientsCollection)
+        public RGDialogsClientsController(IRGDialogsClientsService dialogsClientsService)
         {
-            _dialogsClientsCollection = dialogsClientsCollection;
+            _dialogsClientsService = dialogsClientsService;
         }
 
         /// <summary>
@@ -27,10 +27,7 @@ namespace MessengerCoreAPI.Api.Controllers.RGDialogsClientsController
         [ProducesResponseType(typeof(IEnumerable<Guid>), 200)]
         public IActionResult GetDialogWithClients(IEnumerable<Guid> clientsId)
         {
-            var dialogs = _dialogsClientsCollection.RGDialogsClients
-                .GroupBy(_ => _.IDRGDialog, _ => _.IDClient)
-                .Where(group => clientsId.All(cid => group.Any(dialogCid => dialogCid == cid)))
-                .Select(dialog => dialog.Key);
+            var dialogs = _dialogsClientsService.GetDialogWithClients(clientsId);
 
             return Ok(dialogs);
         }
