@@ -22,7 +22,7 @@ namespace MessengerCoreAPI.Api.Controllers.RGDialogsClientsController
         /// Поиска диалога с переданными идентификаторами клиентов
         /// </summary>
         /// <param name="clientsId">Идентификаторы клиентов для которых необходимо найти диалог</param>
-        /// <returns></returns>
+        /// <returns>Набор id диалогов содержащих переданных клиентов</returns>
         [HttpGet("~/api/v1/dialogs-with-clients")]
         [ProducesResponseType(typeof(IEnumerable<Guid>), 200)]
         public IActionResult GetDialogWithClients(IEnumerable<Guid> clientsId)
