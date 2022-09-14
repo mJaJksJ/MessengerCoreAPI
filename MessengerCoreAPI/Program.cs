@@ -1,11 +1,17 @@
+using MessengerCoreAPI.Models.RGDialogsClients;
+using MessengerCoreAPI.Models.RGDialogsClients.RGDialogsClientsFactory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+IRGDialogsClientsFactory dialogsClientsFactory = new DefaultRGDialogsClientsFactory();
+var dialogs = new RGDialogsClientsCollection { RGDialogsClients = dialogsClientsFactory.CreateRGDialogsClients() };
+builder.Services.AddSingleton(dialogs);
 
 var app = builder.Build();
 
@@ -17,9 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseRouting();
+app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
 app.Run();
