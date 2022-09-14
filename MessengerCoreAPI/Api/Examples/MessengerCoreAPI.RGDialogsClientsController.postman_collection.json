@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "efb4b856-4cef-44bd-80a1-95432d5f3d83",
+		"name": "MessengerCoreAPI.RGDialogsClientsController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetDialogWithClients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7128/api/v1/dialogs-with-clients?clientsId=4b6a6b9a-2303-402a-9970-6e71f4a47151&clientsId=c72e5cb5-d6b4-4c0c-9992-d7ae1c53a820",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7128",
+					"path": [
+						"api",
+						"v1",
+						"dialogs-with-clients"
+					],
+					"query": [
+						{
+							"key": "clientsId",
+							"value": "4b6a6b9a-2303-402a-9970-6e71f4a47151"
+						},
+						{
+							"key": "clientsId",
+							"value": "c72e5cb5-d6b4-4c0c-9992-d7ae1c53a820"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
