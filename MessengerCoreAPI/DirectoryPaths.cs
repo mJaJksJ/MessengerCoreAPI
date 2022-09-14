@@ -19,7 +19,7 @@ namespace MessengerCoreAPI
 
         static DirectoryPaths()
         {
-            WorkingDirectory = Assembly.GetExecutingAssembly().Location;
+            WorkingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             LogsDirectory = Path.Combine(WorkingDirectory, "Logs");
         }
     }

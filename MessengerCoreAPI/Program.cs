@@ -1,3 +1,4 @@
+using System.Reflection;
 using MessengerCoreAPI;
 using MessengerCoreAPI.Models.RGDialogsClients;
 using MessengerCoreAPI.Models.RGDialogsClients.RGDialogsClientsFactory;
@@ -63,9 +64,8 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 
-    var xmlName = $"{Path.GetFileNameWithoutExtension(DirectoryPaths.WorkingDirectory)}.xml";
-    var xmlPath = Path.Combine(Path.GetDirectoryName(DirectoryPaths.WorkingDirectory), xmlName);
-
+    var xmlName = $"{Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location)}.xml";
+    var xmlPath = Path.Combine(DirectoryPaths.WorkingDirectory, xmlName);
     c.IncludeXmlComments(xmlPath);
 });
 
